@@ -9,22 +9,14 @@ const reviewRoutes = require("./routes/reviewRoutes");
 const app = express();
 
 // ── CORS ──────────────────────────────────────────────────
-const allowedOrigins = [
-  "http://localhost:5173",
-  "http://localhost:3000",
-  ...(process.env.FRONTEND_URL ? [process.env.FRONTEND_URL] : []),
-];
-
 app.use(
   cors({
-    origin: function (origin, callback) {
-      // Allow requests with no origin (curl, Postman, Render health checks)
-      if (!origin) return callback(null, true);
-      if (allowedOrigins.includes(origin)) return callback(null, true);
-      callback(new Error(`CORS: origin '${origin}' not allowed`));
-    },
+    origin: [
+      "http://localhost:5173",
+      "https://code-pilot-vert.vercel.app"
+    ],
     methods: ["GET", "POST"],
-    allowedHeaders: ["Content-Type"],
+    credentials: true,
   })
 );
 
@@ -41,7 +33,7 @@ app.use("/api", reviewRoutes);
 // Simple GET / endpoint so you can verify the server is up
 // (useful for Render health checks)
 app.get("/", (req, res) => {
-  res.json({ message: "CodePilot AI Code Reviewer Backend is running 🚀" });
+  res.json({ message: "CodePilot AI Code Reviewer Backend is running" });
 });
 
 // ── 404 Handler ───────────────────────────────────────────

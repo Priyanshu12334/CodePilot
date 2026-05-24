@@ -1,6 +1,5 @@
-<<<<<<< HEAD
 <div align="center">
-  <h1>🚀 CodePilot</h1>
+  <h1>CodePilot</h1>
   <p><strong>AI-Powered Code Review & Fixing Assistant</strong></p>
 
   ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
@@ -13,23 +12,23 @@
 
 <br />
 
-## 📖 Short Description
+## Short Description
 CodePilot is an advanced web application that leverages the Google Gemini AI API to provide real-time code reviews and automated code fixing. Built with a modern React/Vite frontend and a secure Node.js/Express backend, it helps developers write cleaner, optimized, and bug-free code across multiple programming languages.
 
 ---
 
-## ✨ Features
+## Features
 - **🤖 AI Code Review:** Get detailed feedback, quality ratings, and suggested improvements.
 - **🛠️ AI Code Fixing:** Automatically fix syntax errors, logical bugs, and unoptimized code.
 - **🌍 Multi-Language Support:** Supports 20+ programming languages (JavaScript, Python, Java, C++, Rust, Go, etc.).
 - **🌗 Dark / Light Mode:** Fully themed UI for a comfortable coding experience.
 - **📱 Responsive UI:** Optimized layout for desktop, tablet, and mobile.
 - **📋 One-Click Copy:** Seamlessly copy generated code blocks with visual feedback.
-- **🔒 Secure API:** Gemini API keys are safely hidden within the backend server.
+- ** Secure API:** Gemini API keys are safely hidden within the backend server.
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 **Frontend:**
 - React 19 + Vite
 - Tailwind CSS (v4)
@@ -45,7 +44,7 @@ CodePilot is an advanced web application that leverages the Google Gemini AI API
 
 ---
 
-## 📂 Folder Structure
+## Folder Structure
 
 ```text
 codepilot/
@@ -67,7 +66,7 @@ codepilot/
 
 ---
 
-## ⚙️ Installation & Setup
+## Installation & Setup
 
 ### 1. Clone the repository
 ```bash
@@ -99,7 +98,7 @@ FRONTEND_URL=http://localhost:5173
 
 ---
 
-## 🏃‍♂️ Run Locally
+## Run Locally
 
 Open two separate terminals:
 
@@ -118,7 +117,7 @@ The frontend will be available at `http://localhost:5173` and the backend at `ht
 
 ---
 
-## 🚀 Deployment
+## Deployment
 
 ### Backend (Render)
 1. Push your code to GitHub.
@@ -137,20 +136,6 @@ The frontend will be available at `http://localhost:5173` and the backend at `ht
 
 *(Note: Once Vercel provides your live frontend URL, update the `FRONTEND_URL` variable in your Render backend settings so CORS allows the requests.)*
 
----
-
-## 📸 Screenshots
-
-*(Replace these placeholders with actual screenshots of your app)*
-
-> **Desktop View**  
-> `![Desktop UI](path/to/desktop-screenshot.png)`
-
-> **Mobile View**  
-> `![Mobile UI](path/to/mobile-screenshot.png)`
-
----
-
 ## 🔮 Future Improvements
 - [ ] User authentication & history tracking.
 - [ ] Support for multiple files / folder uploads.
@@ -159,7 +144,7 @@ The frontend will be available at `http://localhost:5173` and the backend at `ht
 
 ---
 
-## 👤 Author
+## Author
 **Your Name**  
 - [GitHub](https://github.com/yourusername)
 - [LinkedIn](https://linkedin.com/in/yourusername)
@@ -172,4 +157,3 @@ The frontend will be available at `http://localhost:5173` and the backend at `ht
 =======
 # CodePilot
 CodePilot: AI-powered code review and code fixing platform built with React, Node.js, Express, and Gemini API.
->>>>>>> 50adb1d51a56d51b88baf8c7259a2754377f8321
