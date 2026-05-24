@@ -1,0 +1,505 @@
+/* ═══════════════════════════════════════════════════════════
+   App.css — CodePilot Global Styles
+   Responsive-first: mobile → tablet → desktop
+═══════════════════════════════════════════════════════════ */
+
+/* ── Reset ────────────────────────────────────────────────── */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ── Body ─────────────────────────────────────────────────── */
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #09090b;
+  color: #fff;
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  /* Mobile: allow scrolling; desktop: overflow hidden is handled per-panel */
+  overflow-x: hidden;
+  overflow-y: auto;
+  min-height: 100vh;
+}
+
+/* ── Light Mode (toggled via body.light) ─────────────────── */
+body.light {
+  background-color: #f8fafc;
+  color: #0b1220;
+}
+
+/* ── Light mode — Markdown / response text ───────────────── */
+body.light p {
+  color: #1e293b;
+}
+body.light p > strong {
+  color: #0b1220;
+}
+body.light ul li {
+  color: #334155;
+}
+body.light li strong {
+  color: #0b1220;
+}
+body.light pre {
+  background-color: #f1f5f9 !important;
+  color: #1e293b;
+  border: 1px solid #e2e8f0;
+}
+body.light code {
+  color: #0f172a;
+  background: #e2e8f0;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+body.light blockquote {
+  border-left: 4px solid #93c5fd;
+  padding-left: 12px;
+  color: #374151;
+  background: #f0f9ff;
+  border-radius: 0 6px 6px 0;
+}
+body.light .topTab {
+  border-color: #e2e8f0 !important;
+}
+body.light ::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+body.light ::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+}
+
+/* ── Main Layout ──────────────────────────────────────────── */
+/* 
+  Mobile:  single column, editor on top, response below  
+  Desktop: side-by-side 50/50  
+*/
+.main {
+  display: flex;
+  flex-direction: column;        /* mobile: stack vertically */
+  width: 100%;
+  min-height: calc(100vh - 64px);
+}
+
+/* ── Left Panel (Editor) ──────────────────────────────────── */
+.left {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  /* Mobile: give editor a fixed usable height */
+  height: 60vh;
+  min-height: 320px;
+  border-right: none;
+  border-bottom: 1px solid #27272a;
+}
+
+body.light .left {
+  border-bottom-color: #e2e8f0;
+}
+
+/* ── Toolbar (dropdown + buttons) ────────────────────────── */
+.tabs {
+  display: flex;
+  flex-wrap: wrap;               /* allow wrapping on very small screens */
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  flex-shrink: 0;
+}
+
+/* ── React-Select container ──────────────────────────────── */
+/* Override the auto-generated react-select class names with a stable selector */
+.select-wrapper {
+  flex: 1 1 140px;               /* grow, shrink, min-width 140px */
+  min-width: 130px;
+  max-width: 100%;
+}
+
+/* ── Buttons ─────────────────────────────────────────────── */
+.btnNormal {
+  padding: 9px 16px;
+  color: #fff;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  outline: 0;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: background-color 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
+  flex-shrink: 0;
+}
+
+.btnNormal:hover:not(:disabled) {
+  box-shadow: 0 0 0 2px #3b82f640;
+}
+
+/* Dark mode buttons */
+.btnNormal.bg-zinc-900 {
+  background-color: #18181b;
+  border-color: #3f3f46;
+}
+.btnNormal.bg-zinc-900:hover:not(:disabled) {
+  background-color: #27272a;
+}
+
+/* Fix-code gets a subtle accent in dark mode */
+.btn-fix-dark {
+  background-color: #1c1c20;
+  border-color: #3f3f46;
+  color: #e4e4e7;
+}
+.btn-fix-dark:hover:not(:disabled) {
+  background-color: #27272a;
+}
+
+/* Review gets the blue accent in dark mode */
+.btn-review-dark {
+  background-color: #1d4ed8;
+  border-color: #2563eb;
+  color: #fff;
+}
+.btn-review-dark:hover:not(:disabled) {
+  background-color: #2563eb;
+}
+
+/* Light mode button overrides */
+body.light .btnNormal {
+  background-color: #f1f5f9;
+  color: #0b1220;
+  border-color: #e2e8f0;
+}
+body.light .btnNormal:hover:not(:disabled) {
+  background-color: #e2e8f0;
+}
+
+/* Light btnReview = blue */
+.btnReview {
+  padding: 9px 16px;
+  border-radius: 8px;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: background-color 0.18s ease, box-shadow 0.18s ease;
+  flex-shrink: 0;
+}
+body.light .btnReview {
+  background-color: #2563eb;
+  color: #fff;
+}
+body.light .btnReview:hover:not(:disabled) {
+  background-color: #1d4ed8;
+}
+
+/* ── Monaco Editor wrapper ───────────────────────────────── */
+.editor-wrapper {
+  flex: 1;
+  overflow: hidden;
+  min-height: 0;               /* crucial: lets flexbox shrink the editor */
+}
+
+/* ── Right Panel (Response) ──────────────────────────────── */
+.right {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  /* Mobile: auto height so it expands with content */
+  min-height: 300px;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+/* ── Response header bar ─────────────────────────────────── */
+.topTab {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 52px;
+  padding: 0 6px;
+  border-bottom: 1px solid #27272a;
+  border-top: 1px solid #27272a;
+  margin-bottom: 10px;
+  flex-shrink: 0;
+}
+
+/* ── Loader centering ────────────────────────────────────── */
+.loader-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 0;
+}
+
+/* ── Markdown typography ─────────────────────────────────── */
+.response-body {
+  flex: 1;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  line-height: 1.7;
+}
+
+p {
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
+  color: #a1a1aa;
+  line-height: 1.7;
+}
+
+p > strong {
+  font-size: 16px !important;
+  color: #e4e4e7;
+  font-weight: 600;
+}
+
+ul, ol {
+  padding-left: 20px;
+}
+
+ul li {
+  color: #a1a1aa;
+  margin-top: 8px !important;
+  margin-bottom: 8px !important;
+  list-style: disc !important;
+  line-height: 1.6;
+}
+
+li strong {
+  color: #e4e4e7;
+}
+
+h1, h2, h3, h4 {
+  color: #f4f4f5;
+  margin-top: 16px !important;
+  margin-bottom: 8px !important;
+  line-height: 1.4;
+}
+
+body.light h1, body.light h2, body.light h3, body.light h4 {
+  color: #0f172a;
+}
+
+/* ── Code blocks ─────────────────────────────────────────── */
+.pre-wrapper {
+  position: relative;
+  margin: 12px 0 !important;
+}
+
+.copy-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background-color: #27272a;
+  border: 1px solid #3f3f46;
+  color: #a1a1aa;
+  border-radius: 6px;
+  padding: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  opacity: 0;
+  z-index: 10;
+}
+
+.pre-wrapper:hover .copy-btn {
+  opacity: 1;
+}
+
+.copy-btn:hover {
+  background-color: #3f3f46;
+  color: #f4f4f5;
+}
+
+body.light .copy-btn {
+  background-color: #e2e8f0;
+  border-color: #cbd5e1;
+  color: #475569;
+}
+
+body.light .copy-btn:hover {
+  background-color: #cbd5e1;
+  color: #0f172a;
+}
+
+pre {
+  background-color: #0f0f11 !important;
+  border: 1px solid #27272a;
+  border-radius: 8px;
+  padding: 14px 16px;
+  color: #e4e4e7;
+  overflow-x: auto;
+  margin: 0 !important;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+pre::-webkit-scrollbar {
+  height: 4px;
+}
+
+code {
+  font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+  font-size: 13px;
+}
+
+/* Inline code (not inside pre) */
+:not(pre) > code {
+  background: #27272a;
+  color: #a78bfa;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 12.5px;
+}
+
+body.light :not(pre) > code {
+  background: #e2e8f0;
+  color: #7c3aed;
+}
+
+blockquote {
+  border-left: 3px solid #3b82f6;
+  padding: 8px 12px;
+  margin: 10px 0;
+  background: #18181b;
+  border-radius: 0 6px 6px 0;
+  color: #a1a1aa;
+}
+
+body.light blockquote {
+  background: #f0f9ff;
+  color: #374151;
+}
+
+/* ── Scrollbars ──────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #09090b;
+}
+::-webkit-scrollbar-thumb {
+  background: #3f3f46;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #52525b;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE BREAKPOINTS
+═══════════════════════════════════════════════════════════ */
+
+/* ── Tablet and up (≥768px): side-by-side layout ─────────── */
+@media (min-width: 768px) {
+  body {
+    overflow: hidden;           /* back to no-scroll on desktop */
+  }
+
+  .main {
+    flex-direction: row;        /* side by side */
+    height: calc(100vh - 64px);
+    overflow: hidden;
+  }
+
+  .left {
+    width: 50%;
+    height: 100%;
+    border-right: 1px solid #27272a;
+    border-bottom: none;
+  }
+
+  body.light .left {
+    border-right-color: #e2e8f0;
+    border-bottom: none;
+  }
+
+  .right {
+    width: 50%;
+    height: 100%;
+    overflow-y: scroll;
+  }
+
+  .tabs {
+    padding: 16px 16px 10px;
+    gap: 10px;
+    flex-wrap: nowrap;
+  }
+}
+
+/* ── Large desktop (≥1200px): more comfortable padding ─────── */
+@media (min-width: 1200px) {
+  .tabs {
+    padding: 18px 20px 12px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   NAVBAR
+═══════════════════════════════════════════════════════════ */
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  /* Responsive padding: tight on mobile, generous on desktop */
+  padding: 0 16px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  transition: background-color 0.2s ease;
+}
+
+/* Logo group */
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.navbar-brand {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  line-height: 1;
+}
+
+/* Theme toggle button */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.18s ease, box-shadow 0.18s ease;
+  flex-shrink: 0;
+}
+
+.theme-toggle:hover {
+  box-shadow: 0 0 0 3px #3b82f620;
+}
+
+/* Larger padding on tablets and above */
+@media (min-width: 640px) {
+  .navbar {
+    padding: 0 32px;
+  }
+  .navbar-brand {
+    font-size: 22px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .navbar {
+    padding: 0 48px;
+  }
+}

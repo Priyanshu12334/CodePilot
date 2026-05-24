@@ -1,0 +1,4 @@
+# Frontend – files to never commit
+node_modules/
+dist/
+.env
