@@ -1,3 +1,4 @@
-# Backend .gitignore
 node_modules/
 .env
+.vite
+dist

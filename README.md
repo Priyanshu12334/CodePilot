@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div align="center">
   <h1>🚀 CodePilot</h1>
   <p><strong>AI-Powered Code Review & Fixing Assistant</strong></p>
@@ -168,3 +169,7 @@ The frontend will be available at `http://localhost:5173` and the backend at `ht
 <div align="center">
   <i>If you find this project helpful, please consider leaving a ⭐ on the repository!</i>
 </div>
+=======
+# CodePilot
+CodePilot: AI-powered code review and code fixing platform built with React, Node.js, Express, and Gemini API.
+>>>>>>> 50adb1d51a56d51b88baf8c7259a2754377f8321
